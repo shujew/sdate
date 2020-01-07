@@ -9,10 +9,11 @@ const SDate = {
   /**
    * Storage wrapper around localstorage and cookies. Defaults to a volatile storage data
    * structure if both localstorage and cookies are unavailable
+   * @private
    * @type {Object}
    */
   dataStore,
-  /** @type {string} */
+  /** @private @type {string} */
   keyName: 'sdate-delta',
   /**
    * Calculates the delta between the local computer time and the server time from worldtimeapi
@@ -21,6 +22,9 @@ const SDate = {
   initialize() {
     /**
      * Fetches server date from worldtimeapi and calls callback on parsed server date
+     * Called automatically when sdate.min.js is loaded
+     * TODO: sync with a HEAD request to Google instead
+     * @private
      * @param {function} callback
      */
     const fetchServerDate = (callback) => {
@@ -43,6 +47,7 @@ const SDate = {
     };
     /**
      * Callback for fetching server date
+     * TODO: round to maybe 1000ms to account for latency/sync nature of js/...?
      * @callback fetchServerDate
      * @param {Date} serverDate
      */
@@ -72,7 +77,7 @@ const SDate = {
   },
 };
 
-// Synchronize with realworldtime api pre-emptively so that `SDate.getDate();` will return
+// Synchronize date with server pre-emptively so that `SDate.getDate();` will return
 // a synchronized date as soon as possible
 SDate.initialize();
 

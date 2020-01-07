@@ -7,6 +7,7 @@ const dataStore = {
   /**
    * Used as fallback if localstorage and custom storage are not available. This is a volatile
    * date structure thus contents will be wiped across different sessions/tabs/...
+   * @private
    * @type {Object}
    */
   customStorage: {},
