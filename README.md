@@ -8,7 +8,7 @@ A JavaScript helper which synchronizes the client date with a server date (provi
 <head>
 <script src="sdate.min.js"></script>
 <script>
-    console.log(sdate.getDate();)
+    console.log(sdate.getDate());
 </script>
 </head>
 <body>
@@ -16,8 +16,13 @@ A JavaScript helper which synchronizes the client date with a server date (provi
 </html>
 ```
 ### Node.js
-```javascript
-/** TBA **/
+```sh
+$ npm install sdate
+```
+
+```js
+const sdate = require('sdate');
+console.log(sdate.getDate());
 ```
 ## TO-DO
 - [ ] Finish documentation
