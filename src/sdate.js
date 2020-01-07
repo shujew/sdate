@@ -54,7 +54,16 @@ const SDate = {
     fetchServerDate(parseServerDate);
   },
   /**
-   * Returns a synchronized date
+   * Returns whether the initialization process has successfully completed or not
+   * @return {boolean}
+   */
+  isReady() {
+    const delta = Number(this.dataStore.getItem(this.keyName));
+    return !Number.isNaN(delta);
+  },
+  /**
+   * Returns a synchronized date. If initialization process is not completed, this will
+   * return `Date.now()`
    * @return {Date}
    */
   getDate() {
@@ -63,6 +72,8 @@ const SDate = {
   },
 };
 
+// Synchronize with realworldtime api pre-emptively so that `SDate.getDate();` will return
+// a synchronized date as soon as possible
 SDate.initialize();
 
 module.exports = SDate;
