@@ -16,13 +16,13 @@ const dataStore = {
    * @return {string|null}
    */
   getItem(name) {
-    if (window.localStorage) {
+    if ((window || {}).localStorage) {
       return window.localStorage.getItem(name);
-    } else if (window.document) {
-      return this.getCookie(name);
-    } else {
-      return this.customStorage[name] || null;
     }
+    if ((window || {}).document) {
+      return this.getCookie(name);
+    }
+    return this.customStorage[name] || null;
   },
   /**
    * Sets a value for a key in the data store. Will override any existing value.

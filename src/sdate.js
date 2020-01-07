@@ -26,6 +26,7 @@ const SDate = {
     const fetchServerDate = (callback) => {
       const endpoint = 'http://worldtimeapi.org/api/timezone/Etc/UTC';
       const req = new XMLHttpRequest();
+      // eslint-disable-next-line func-names
       req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
           /** @type {string} */
