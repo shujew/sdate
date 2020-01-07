@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/sdate.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'sdate.js',
+    filename: 'sdate.min.js',
     libraryTarget: 'umd',
     library: 'sdate',
     umdNamedDefine: true,
