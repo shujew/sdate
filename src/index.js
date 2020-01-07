@@ -130,4 +130,4 @@ const SDate = {
 
 SDate.initialize();
 
-export default SDate;
+module.exports = SDate;

@@ -2,7 +2,7 @@
   "name": "sdate",
   "version": "0.0.1",
   "description": "An NPM package which provides accurate date for data logging",
-  "main": "dist/index.js",
+  "main": "dist/sdate.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --content-base dist --hot --mode development",
     "build": "webpack --mode production",
