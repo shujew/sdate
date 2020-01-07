@@ -1,10 +1,20 @@
+/** @type {string} */
+const cookieName = 'sdate-delta';
+
+const helpers = {
+  getCookie: (name) => {
+    return document.cookie.split('; ').reduce((r, v) => {
+      const parts = v.split('=');
+      return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+    }, '');
+  },
+};
+
 /**
  * Calculates the delta between the local computer time and the server time from worldtimeapi and
  * stores it inside a cookie
  */
 const initialize = () => {
-  /** @type {string} */
-  const cookieName = 'sdate-delta';
   /** @type {number} */
   const cookieExpDays = 7;
 
@@ -19,8 +29,7 @@ const initialize = () => {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = `${name}=${encodeURIComponent(value)};`
       + `expires=${expires};`
-      + `path=${path};`;
-      // + 'SameSite=None';
+      + `path=${path};`; // + 'SameSite=None';
   };
 
   /**
@@ -58,4 +67,11 @@ const initialize = () => {
   fetchServerDate(parseServerDate);
 };
 
+const getSDate = () => {
+  const delta = Number(helpers.getCookie(cookieName));
+  return Number.isNaN(delta) ? Date.now() : new Date(Date.now() + delta);
+};
+
 initialize();
+
+window.getSDate = getSDate;
