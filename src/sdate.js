@@ -47,12 +47,12 @@ const SDate = {
     };
     /**
      * Callback for fetching server date
-     * TODO: round to maybe 1000ms to account for latency/sync nature of js/...?
      * @callback fetchServerDate
      * @param {Date} serverDate
      */
     const parseServerDate = (serverDate) => {
-      const delta = serverDate - Date.now();
+      // round delta to closest second (1000ms) to account for latency
+      const delta = Math.round((serverDate - Date.now()) / 1000) * 1000;
       this.dataStore.setItem(this.keyName, delta);
     };
 
